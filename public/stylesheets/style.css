@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+.centerText {
+  text-align: center;
+}
+
+.pathDiv {
+  margin: 50px;
+}
+
+.pathInput {
+  width: 50%;
+  height: 30px;
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
