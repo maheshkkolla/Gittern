@@ -19,6 +19,11 @@
 }
 
 .reposList .repo:hover {
+    background-color: #808080;
+    color: #ffffff;
+}
+
+.reposList .repo.selected {
     background-color: #444444;
     color: #ffffff;
 }
