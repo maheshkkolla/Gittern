@@ -1,0 +1,4 @@
+div.reposList
+ each repo in repos
+  button.repo(data-projectPath="#{path}/#{repo}") #{repo}
+script(type='text/javascript' src='/javascripts/repoHandler.js')

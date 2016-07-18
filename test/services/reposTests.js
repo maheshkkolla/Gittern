@@ -13,4 +13,13 @@ describe('Repos service' ,function() {
         repos.getAll(mainDirPath, reposCallback);
         mockito.verify(reposCallback)(null, resultRepos);
     });
+
+    it('getStatus gives the status of the given repository', function() {
+        var repoPath = "/dummy/path";
+        var status = {staged:[], unstaged:[], untracked:[]};
+        var reposCallback = mockito.mockFunction();
+        mockito.when(mockedGit).getRepoStatus(repoPath).thenReturn(status);
+        repos.getStatus(repoPath, reposCallback);
+        mockito.verify(reposCallback)(null, status);
+    });
 });

@@ -1,0 +1,24 @@
+.reposList {
+    display: inline-block;
+    width:  100%;
+}
+
+.reposList .repo {
+    width: 100%;
+    display: block;
+    border: 1px solid #eaeaea;
+    padding: 15px;
+    background-color: lightgray;
+    color: black;
+    font-size: 20px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.reposList .repo:hover {
+    background-color: #444444;
+    color: #ffffff;
+}

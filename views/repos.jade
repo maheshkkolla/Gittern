@@ -1,3 +1,9 @@
-h1  All Projects :
-each repo in repos
- p #{repo}
+extends layout
+
+block content
+ div
+  div.row_30
+   h1  All Projects
+   include _reposList
+  div.row_70
+   include _gitContent

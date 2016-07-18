@@ -1,0 +1,14 @@
+h1 Status
+div.container
+ h4 Staged Files:
+ div.stagedFiles
+  each stagedFileObject in status.staged
+   div.stagedFile #{stagedFileObject.file}
+ h4 Unstaged Files:
+ div.unstagedFiles
+  each unstagedFileObject in status.unstaged
+   div.unstagedFile #{unstagedFileObject.file}
+ h4 Untracked Files:
+ div.untrackedFiles
+  each untrackedFile in status.untracked
+   div.untrackedFile #{untrackedFile}

@@ -1,0 +1,23 @@
+.untrackedFiles {
+    padding-left: 30px;
+}
+
+.untrackedFiles .untrackedFile {
+    color: #ff4500;
+}
+
+.unstagedFiles {
+    padding-left: 30px;
+}
+
+.unstagedFiles .unstagedFile {
+    color: #e87d0d;
+}
+
+.stagedFiles {
+    padding-left: 30px;
+}
+
+.stagedFiles .stagedFile {
+    color: #008000;
+}

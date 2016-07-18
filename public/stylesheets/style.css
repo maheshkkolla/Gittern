@@ -1,6 +1,10 @@
+@import url("repos.css");
+@import url("tabs.css");
+@import url("status.css");
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: whitesmoke;
 }
 
 a {
@@ -9,6 +13,24 @@ a {
 
 .centerText {
   text-align: center;
+}
+
+.container {
+  padding: 10px 50px 30px;
+}
+
+.row_30 {
+  width: 30%;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.row_70 {
+  width: 70%;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .pathDiv {
