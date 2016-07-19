@@ -6,7 +6,7 @@ var config = {
       command: function(offset, limit) {
         return `git log --skip ` + offset + ` -n ` + limit +
         ` --pretty=format:'%H`+ this.colSeparator + `%an`+ this.colSeparator +
-            `%s`+ this.newLineSeparator + `'`;
+            `%s`+ this.colSeparator + `%ad` + this.newLineSeparator + `'`;
       },
       countCmd: "git rev-list --count HEAD"
     }

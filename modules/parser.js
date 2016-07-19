@@ -8,7 +8,8 @@ module.exports = {
             return {
                 id: logDetails[0].replace('\n',''),
                 author: logDetails[1],
-                message: logDetails[2]
+                message: logDetails[2],
+                date: logDetails[3]
             };
         });
     }
