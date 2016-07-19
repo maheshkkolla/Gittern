@@ -2,15 +2,10 @@ $(function() {
     $('.reposList .repo').click(function(event) {
         var self = $(event.target);
         changeSelectedRepo(self);
-        var projectPath = self.attr('data-projectPath');
-        new Ajax({
-            url: '/repos/repo/status',
-            type: 'GET'
-        }).setQueryParams({path: projectPath}).call()
-        .done(function(status) {
-            refreshTab('status', status);
-        });
+        $('ul.tabs li a.tab_link')[0].click();
     });
+
+
 });
 
 var changeSelectedRepo = function(selectedRepo) {

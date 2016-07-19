@@ -1,0 +1,35 @@
+.pagination .prevLogs, .pagination .nextLogs {
+    font-size: 18px;
+    background: #ffffff;
+    border: 2px solid #d3d3d3;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.pagination .logsPaginationSelection {
+    font-size: 18px;
+    background: #ffffff;
+    border: 2px solid #d3d3d3;
+}
+
+.logs .log {
+    background: #faf3eb;
+    border: 1px solid #efdcc3;
+    font-family: serif;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.log .hash {
+    font-family: monospace;
+    padding-right: 5px;
+    color: #00008b;
+}
+
+.log .message {
+    padding-left: 5px;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: #8b4513 ;
+}

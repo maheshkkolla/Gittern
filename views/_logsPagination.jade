@@ -1,0 +1,15 @@
+div.right.pagination
+ div.centerText Commits
+ button.prevLogs(title='Prev logs') <<
+ select.logsPaginationSelection
+  - for(i=0; i<= count/30; i++) {
+    - var start = i * 30, end = i * 30 + 30;
+    - if(end > count) end = count;
+    - if(offset == start)
+        option(value="#{start}" selected) #{start} - #{end}
+    - else
+        option(value="#{start}") #{start} - #{end}
+  - }
+ button.nextLogs(title='Next logs') >>
+div.clear-fix
+script(type='text/javascript' src='/javascripts/logsPaginationHandler.js')

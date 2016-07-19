@@ -1,10 +1,11 @@
 @import url("repos.css");
 @import url("tabs.css");
 @import url("status.css");
+@import url("logs.css");
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: whitesmoke;
+  background-color: transparent;
 }
 
 a {
@@ -19,15 +20,15 @@ a {
   padding: 10px 50px 30px;
 }
 
-.row_30 {
-  width: 30%;
+.row_25 {
+  width: 25%;
   display: inline-block;
   box-sizing: border-box;
   vertical-align: top;
 }
 
-.row_70 {
-  width: 70%;
+.row_75 {
+  width: 75%;
   box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
@@ -45,4 +46,12 @@ a {
 
 .hidden {
   display: none;
+}
+
+.right {
+  float: right;
+}
+
+.clear-fix {
+  clear: both;
 }

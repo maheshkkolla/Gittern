@@ -1,0 +1,8 @@
+h1 Logs
+include _logsPagination
+div.container.logs
+ each log in logs
+  div.log
+   span.hash #{log.id.slice(0,7)}
+   span.message(title='#{log.author}') #{log.message}
+include _logsPagination

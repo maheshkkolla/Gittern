@@ -1,5 +1,10 @@
 var fs = require('fs'),
     path = require('path');
+    //require('shelljs/global');
+
+var sh = require('shelljs');
+sh.config.silent = true; // Do not print the output of the commands
+
 
 module.exports = {
     getAllSubDirectories: function(pathToParent) {
@@ -21,6 +26,11 @@ module.exports = {
         if(fs.existsSync(path))
             return fs.statSync(path).isDirectory();
         return false;
+    },
+
+    runCommand: function(path, command) {
+        sh.cd(path);
+        return sh.exec(command).stdout;
     }
 };
 

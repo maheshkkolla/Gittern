@@ -1,11 +1,14 @@
-var proxyquire  =  require('proxyquire');
+var config = require('../../config');
+var proxyquire = require('proxyquire');
 var mockito = require('jsmockito').JsMockito;
 var expect = require('chai').expect;
 var mockedShell = mockito.mock(require('../../modules/shell'));
 var mockedGitC = mockito.mockFunction();
+var mockedParser = mockito.mock(require('../../modules/parser'));
 var git = proxyquire('../../modules/git', {
     './shell': mockedShell,
-    'git-controller': mockedGitC
+    'gitty': mockedGitC,
+    './parser': mockedParser
 });
 
 describe('git' ,function() {
@@ -37,5 +40,25 @@ describe('git' ,function() {
         mockito.when(gitS).statusSync().thenReturn(status);
         var resultStatus = git.getRepoStatus(repoPath);
         expect(resultStatus).to.eql(status);
+    });
+
+    it("getRepoLogs gives the logs of specified number from specified offset", function() {
+        var repoPath = "/dummay/path/here";
+        var offset = 10, limit = 10;
+        var command = config.git.logs.command(offset, limit);
+        var logs = "Some logs here\n one more log here";
+        var parsedLogs = [{message: "Commit1"},{message: "Commit2"}];
+        mockito.when(mockedShell).runCommand(repoPath, command).thenReturn(logs);
+        mockito.when(mockedParser).parseGitLogs(logs).thenReturn(parsedLogs);
+        var originalLogs = git.getRepoLogs(repoPath, offset, limit);
+        expect(originalLogs).to.eql(parsedLogs);
+    });
+
+    it("getCommitCount gives the count of the commits in the given repository", function() {
+        var repoPath = "/dummay/path/here";
+        var command = config.git.logs.countCmd;
+        var commitCount = 12345;
+        mockito.when(mockedShell).runCommand(repoPath, command).thenReturn(commitCount);
+        expect(git.getCommitCount(repoPath)).to.equal(commitCount);
     });
 });

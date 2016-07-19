@@ -1,5 +1,10 @@
 var expect = require('chai').expect;
-var shell = require('../../modules/shell');
+var proxyquire = require('proxyquire');
+var mockito = require('jsmockito').JsMockito;
+var mockedShell = mockito.mock(require('shelljs'));
+var shell = proxyquire('../../modules/shell', {
+    'shelljs': mockedShell
+});
 
 describe('shell' ,function() {
     it('getAllSubDirectories gives the list of sub directories for a given main directory', function() {
@@ -34,5 +39,15 @@ describe('shell' ,function() {
 
     it('isDirectory tells that given dummy directory is not a directory', function() {
         expect(shell.isDirectory('./test/testDir/noDirectory')).to.be.false;
+    });
+
+    it('runCommand runs the given command in given path', function() {
+        var pathToRun = "/path/to/run";
+        var command = "command --to --run";
+        var expectedResult = { stdout: "This is expected result \n\t from the given command"};
+        mockito.when(mockedShell).exec(command).thenReturn(expectedResult);
+        var originalResult = shell.runCommand(pathToRun, command);
+        mockito.verify(mockedShell.cd)(pathToRun);
+        expect(originalResult).to.eql(expectedResult.stdout);
     });
 });
