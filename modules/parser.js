@@ -17,5 +17,13 @@ module.exports = {
     parseGitHubUrl: function (url) {
         if(!url) return url;
         return url.split("@")[1].replace(':', '/').replace('.git','');
+    },
+
+    parseBehindAndAhead: function(behindAndAhead) {
+        var stats = behindAndAhead.split("\t");
+        return {
+            behind: stats[0],
+            ahead: stats[1]
+        }
     }
 };

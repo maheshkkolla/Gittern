@@ -1,12 +1,12 @@
-.untrackedFiles {
+.status .untrackedFiles {
     padding-left: 30px;
 }
 
-.untrackedFiles .untrackedFile {
+.status .untrackedFiles .untrackedFile {
     color: #ff4500;
 }
 
-.unstagedFiles {
+.status .unstagedFiles {
     padding-left: 30px;
 }
 
@@ -14,10 +14,15 @@
     color: #e87d0d;
 }
 
-.stagedFiles {
+.status .stagedFiles {
     padding-left: 30px;
 }
 
 .stagedFiles .stagedFile {
     color: #008000;
+}
+
+.status .behindAheadNumber {
+    color: #000080;
+    padding-left: 10px;
 }

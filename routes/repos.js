@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/repo/status', function(req, res, next) {
     var path = req.query.path;
-    reposService.getStatus(path, function(error, status) {
+    reposService.getStatus(path, function(error, status, stats) {
         if(error) next(error);
-        else res.render('_repoStatus', { status: status });
+        else res.render('_repoStatus', { status: status, stats: stats });
     });
 });
 

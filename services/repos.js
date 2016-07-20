@@ -7,7 +7,8 @@ module.exports = {
 
     getStatus: function(path, callback) {
         var status = git.getRepoStatus(path);
-        callback(null, status);
+        var stats = git.getBehindAndAhead(path);
+        callback(null, status, stats);
     },
 
     getLogs: function(path, offset, callback) {

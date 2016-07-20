@@ -10,7 +10,8 @@ var config = {
       },
       countCmd: "git rev-list --count HEAD"
     },
-    urlCmd: "git config --get remote.origin.url"
+    urlCmd: "git config --get remote.origin.url",
+    behindAndAheadCmd: "git rev-list --left-right --count origin/master...head"
   }
 };
 

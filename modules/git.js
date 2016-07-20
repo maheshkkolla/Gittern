@@ -28,5 +28,9 @@ module.exports = {
 
     getGitHubUrl: function(repoPath) {
         return parser.parseGitHubUrl(shell.runCommand(repoPath, config.git.urlCmd));
+    },
+
+    getBehindAndAhead: function(repoPath) {
+        return parser.parseBehindAndAhead(shell.runCommand(repoPath, config.git.behindAndAheadCmd));
     }
 };
