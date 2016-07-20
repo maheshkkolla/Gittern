@@ -32,5 +32,13 @@ module.exports = {
 
     getBehindAndAhead: function(repoPath) {
         return parser.parseBehindAndAhead(shell.runCommand(repoPath, config.git.behindAndAheadCmd));
+    },
+
+    pullRebase: function(repoPath, callback) {
+        var repo = git(repoPath);
+        repo.pull('', '', ['--rebase'], function(error) {
+            if(error) callback(null, { error: true });
+            else callback(null, { success: true });
+        });
     }
 };

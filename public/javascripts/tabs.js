@@ -8,9 +8,10 @@ $(function() {
     });
 });
 
-var callAndRefreshTab = function(tabContentId, url, queryParams) {
+var callAndRefreshTab = function(tabContentId, url, queryParams, done) {
     getTabContent(url, queryParams).done(function(content) {
         refreshTab(tabContentId, content);
+        if(done) done();
     });
 };
 

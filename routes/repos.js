@@ -27,7 +27,13 @@ router.get('/repo/logs', function(req, res, next) {
     });
 });
 
-
+router.get('/repo/pullRebase', function(req, res, next) {
+    var path = req.query.path;
+    reposService.pullRebase(path, function(error, pullStatus) {
+        if(error) next(error);
+        else res.json(pullStatus);
+    });
+});
 
 
 module.exports = router;

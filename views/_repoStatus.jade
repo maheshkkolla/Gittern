@@ -1,6 +1,9 @@
 h1 Status
 div.container.status
  div
+  button.btn.pullRebase Pull Rebase
+  div.message.hidden Loading...
+ div
   h4 Commits behind:
    span.behindAheadNumber #{stats.behind || 'Not found'}
   h4 Commits ahead:
@@ -18,3 +21,4 @@ div.container.status
   div.untrackedFiles
    each untrackedFile in status.untracked
     div.untrackedFile #{untrackedFile}
+script(type='text/javascript' src='/javascripts/status.js')

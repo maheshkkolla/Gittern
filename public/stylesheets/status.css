@@ -26,3 +26,11 @@
     color: #000080;
     padding-left: 10px;
 }
+
+.status .message {
+    margin-top: 10px;
+    border: 1px solid #fff099;
+    padding: 10px;
+    background: #fffbe6;
+    color: #998200;
+}

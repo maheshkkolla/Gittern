@@ -17,5 +17,9 @@ module.exports = {
         var logs = git.getRepoLogs(path, offset, 30);
         var url = git.getGitHubUrl(path);
         callback(null, logs, commitCount, url);
+    },
+
+    pullRebase: function(path, callback) {
+        git.pullRebase(path, callback);
     }
 };
