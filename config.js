@@ -13,6 +13,13 @@ var config = {
     urlCmd: "git config --get remote.origin.url",
     behindAndAheadCmd: "git rev-list --left-right --count origin/master...head",
     stashCmd: "git stash"
+  },
+  errors: {
+    gitPull: "Error occurred during git pull",
+    gitStash: "Error occurred during git stash"
+},
+  success: {
+    gitPull: "Pull success"
   }
 };
 

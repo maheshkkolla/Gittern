@@ -1,10 +1,15 @@
 var proxyquire  =  require('proxyquire');
 var mockito = require('jsmockito').JsMockito;
 //var expect = require('chai').expect;
-var mockedGit = mockito.mock(require('../../modules/git'));
-var repos =   proxyquire('../../services/repos', {'../modules/git': mockedGit});
+var mockedGit = null;
+var repos = null;
 
 describe('Repos service' ,function() {
+    beforeEach(function() {
+        mockedGit = mockito.mock(require('../../modules/git'));
+        repos = proxyquire('../../services/repos', {'../modules/git': mockedGit});
+    });
+
     it('getAll gives the list of repositories in a given directory', function() {
         var mainDirPath = "this is main directory path";
         var resultRepos = ['Repo1', 'Repo2'];
@@ -34,5 +39,29 @@ describe('Repos service' ,function() {
         mockito.when(mockedGit).getGitHubUrl(repoPath).thenReturn(url);
         repos.getLogs(repoPath, offset, reposCallback);
         mockito.verify(reposCallback)(null, logs, count, url);
+    });
+
+    it("pullRebase pulls the given repository", function() {
+        var repoPath = "/dummy/path";
+        var callback = mockito.mockFunction();
+        repos.pullRebase(repoPath, callback);
+        mockito.verify(mockedGit.pullRebase)(repoPath, callback);
+    });
+
+    it("stashAndPull first stashs the changes in repo and then pulls the repo", function() {
+        var repoPath = "/dummy/path";
+        var callback = mockito.mockFunction();
+        mockito.when(mockedGit).stash(repoPath).thenReturn(true);
+        repos.stashAndPull(repoPath, callback);
+        mockito.verify(mockedGit.pullRebase)(repoPath, callback);
+    });
+
+    it("stashAndPull will not pull if error at stashing", function() {
+        var repoPath = "/dummy/path";
+        var callback = mockito.mockFunction();
+        mockito.when(mockedGit).stash(repoPath).thenReturn(false);
+        repos.stashAndPull(repoPath, callback);
+        mockito.verify(callback)();
+        mockito.verifyZeroInteractions(mockedGit.pullRebase);
     });
 });

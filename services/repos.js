@@ -1,4 +1,5 @@
 var git = require('../modules/git');
+var config = require('../config');
 module.exports = {
     getAll: function(path, callback) {
         var projects = git.getAllRepositories(path);
@@ -21,5 +22,13 @@ module.exports = {
 
     pullRebase: function(path, callback) {
         git.pullRebase(path, callback);
+    },
+
+    stashAndPull: function(path, callback) {
+        if(git.stash(path)) {
+            this.pullRebase(path, callback);
+        } else {
+            callback({ message: config.errors.gitStash }, null);
+        }
     }
 };

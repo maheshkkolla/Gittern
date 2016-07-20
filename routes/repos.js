@@ -30,7 +30,15 @@ router.get('/repo/logs', function(req, res, next) {
 router.get('/repo/pullRebase', function(req, res, next) {
     var path = req.query.path;
     reposService.pullRebase(path, function(error, pullStatus) {
-        if(error) next(error);
+        if(error) res.json({error: error});
+        else res.json(pullStatus);
+    });
+});
+
+router.get('/repo/stashAndPull', function(req, res, next) {
+    var path = req.query.path;
+    reposService.stashAndPull(path, function(error, pullStatus) {
+        if(error) res.json({error: error});
         else res.json(pullStatus);
     });
 });
