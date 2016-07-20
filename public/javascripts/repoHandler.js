@@ -8,6 +8,10 @@ $(function() {
 
 });
 
+var getSelectedRepoPath = function() {
+    return $('.reposList .repo.selected').attr('data-projectPath');
+};
+
 var changeSelectedRepo = function(selectedRepo) {
     selectedRepo.siblings('button.repo.selected').removeClass('selected');
     selectedRepo.addClass('selected');

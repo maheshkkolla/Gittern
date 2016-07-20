@@ -12,5 +12,10 @@ module.exports = {
                 date: logDetails[3]
             };
         });
+    },
+
+    parseGitHubUrl: function (url) {
+        if(!url) return url;
+        return url.split("@")[1].replace(':', '/').replace('.git','');
     }
 };

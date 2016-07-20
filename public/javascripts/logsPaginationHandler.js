@@ -16,6 +16,6 @@ $(function() {
 });
 
 var reRenderLogs = function(offset) {
-    var projectPath = $('.reposList .repo.selected').attr('data-projectPath');
+    var projectPath = getSelectedRepoPath();
     callAndRefreshTab('#logs', '/repos/repo/logs', { path: projectPath, offset: offset});
 };

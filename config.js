@@ -9,7 +9,8 @@ var config = {
             `%s`+ this.colSeparator + `%ad` + this.newLineSeparator + `'`;
       },
       countCmd: "git rev-list --count HEAD"
-    }
+    },
+    urlCmd: "git config --get remote.origin.url"
   }
 };
 

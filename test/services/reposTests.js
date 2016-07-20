@@ -22,4 +22,17 @@ describe('Repos service' ,function() {
         repos.getStatus(repoPath, reposCallback);
         mockito.verify(reposCallback)(null, status);
     });
+
+    it('getLogs gets the logs of the given repo', function() {
+        var repoPath = "/dummy/path";
+        var offset = 10;
+        var count = 100, url = 'github.com/user/project';
+        var logs = [{id:"1234", message:"some message"},{id:"0987654", message:"some message"}];
+        var reposCallback = mockito.mockFunction();
+        mockito.when(mockedGit).getCommitCount(repoPath).thenReturn(count);
+        mockito.when(mockedGit).getRepoLogs(repoPath, offset, 30).thenReturn(logs);
+        mockito.when(mockedGit).getGitHubUrl(repoPath).thenReturn(url);
+        repos.getLogs(repoPath, offset, reposCallback);
+        mockito.verify(reposCallback)(null, logs, count, url);
+    });
 });

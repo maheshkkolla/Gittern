@@ -24,5 +24,9 @@ module.exports = {
 
     getCommitCount: function(repoPath) {
         return shell.runCommand(repoPath, config.git.logs.countCmd);
+    },
+
+    getGitHubUrl: function(repoPath) {
+        return parser.parseGitHubUrl(shell.runCommand(repoPath, config.git.urlCmd));
     }
 };

@@ -2,7 +2,7 @@ h1 Logs
 include _logsPagination
 div.container.logs
  each log in logs
-  div.log(title='Author: #{log.author} \nDate: #{log.date}')
+  a.log(href='http://#{url}/commit/#{log.id}' target='_blank' title='Author: #{log.author} \nDate: #{log.date}')
    span.hash #{log.id.slice(0,7)}
    span.message #{log.message}
 include _logsPagination

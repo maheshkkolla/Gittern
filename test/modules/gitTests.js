@@ -61,4 +61,15 @@ describe('git' ,function() {
         mockito.when(mockedShell).runCommand(repoPath, command).thenReturn(commitCount);
         expect(git.getCommitCount(repoPath)).to.equal(commitCount);
     });
+
+    it("getGitHubUrl gives the git hub url for a given repo", function() {
+        var repoPath = "/dummy/repo/path/here";
+        var command = config.git.urlCmd;
+        var gitHubUrl = "git@github.com:user/project.git";
+        var parsedUrl = "github.com/user/project";
+        mockito.when(mockedShell).runCommand(repoPath, command).thenReturn(gitHubUrl);
+        mockito.when(mockedParser).parseGitHubUrl(gitHubUrl).thenReturn(parsedUrl);
+        var resultUrl = git.getGitHubUrl(repoPath);
+        expect(resultUrl).to.eql(parsedUrl);
+    });
 });

@@ -21,9 +21,9 @@ router.get('/repo/status', function(req, res, next) {
 router.get('/repo/logs', function(req, res, next) {
     var path = req.query.path;
     var offset = req.query.offset || 0;
-    reposService.getLogs(path, offset, function(error, logs, count) {
+    reposService.getLogs(path, offset, function(error, logs, count, url) {
         if(error) next(error);
-        else res.render('_repoLogs', { logs: logs, count: count, offset: offset });
+        else res.render('_repoLogs', { logs: logs, count: count, offset: offset, url: url });
     });
 });
 

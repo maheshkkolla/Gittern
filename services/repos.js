@@ -14,6 +14,7 @@ module.exports = {
         var commitCount = git.getCommitCount(path);
         if(commitCount < offset) offset = 0;
         var logs = git.getRepoLogs(path, offset, 30);
-        callback(null, logs, commitCount);
+        var url = git.getGitHubUrl(path);
+        callback(null, logs, commitCount, url);
     }
 };

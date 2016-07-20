@@ -27,4 +27,10 @@ describe('Parser', function() {
             }
         ]);
     });
+
+    it("parseGitHubUrl parses the git remote url", function() {
+        var url = "git@github.com:user/Project.git";
+        var parsedUrl = parser.parseGitHubUrl(url);
+        expect(parsedUrl).to.eql("github.com/user/Project");
+    });
 });

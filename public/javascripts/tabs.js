@@ -3,7 +3,7 @@ $(function() {
         var selfElement = $(event.target);
         var tabContentId = "#" + selfElement.attr('data-content');
         var url = selfElement.attr('data-url');
-        var projectPath = $('.reposList .repo.selected').attr('data-projectPath');
+        var projectPath = getSelectedRepoPath();
         callAndRefreshTab(tabContentId, url, {path: projectPath});
     });
 });
