@@ -85,4 +85,11 @@ describe('git' ,function() {
         git.pullRebase(repoPath, callbackForPull);
         mockito.verify(callbackForPull)(null);
     });
+
+    it("stash stashes the given repository", function() {
+        var repoPath = "/dummay/path/here";
+        var command = config.git.stashCmd;
+        mockito.when(mockedShell).runCommandGiveStatus(repoPath, command).thenReturn(true);
+        expect(git.stash(repoPath)).to.be.true;
+    });
 });

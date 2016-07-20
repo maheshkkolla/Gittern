@@ -31,6 +31,11 @@ module.exports = {
     runCommand: function(path, command) {
         sh.cd(path);
         return sh.exec(command).stdout;
+    },
+
+    runCommandGiveStatus: function(path, command) {
+        sh.cd(path);
+        return (sh.exec(command).code == 0);
     }
 };
 

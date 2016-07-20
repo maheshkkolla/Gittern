@@ -1,12 +1,17 @@
 var expect = require('chai').expect;
 var proxyquire = require('proxyquire');
 var mockito = require('jsmockito').JsMockito;
-var mockedShell = mockito.mock(require('shelljs'));
-var shell = proxyquire('../../modules/shell', {
-    'shelljs': mockedShell
-});
+var mockedShell = null;
+var shell = null;
 
 describe('shell' ,function() {
+    beforeEach(function() {
+        mockedShell = mockito.mock(require('shelljs'));
+        shell = proxyquire('../../modules/shell', {
+            'shelljs': mockedShell
+        });
+    });
+
     it('getAllSubDirectories gives the list of sub directories for a given main directory', function() {
         var subDirectories = shell.getAllSubDirectories('./test/testDir');
         expect(subDirectories).to.eql([ 'Dir1', 'Dir2', 'Repo1', 'Repo2' ]);
@@ -49,5 +54,25 @@ describe('shell' ,function() {
         var originalResult = shell.runCommand(pathToRun, command);
         mockito.verify(mockedShell.cd)(pathToRun);
         expect(originalResult).to.eql(expectedResult.stdout);
+    });
+
+    it('runCommandGiveStatus runs the given command and gives true when return code is 0', function() {
+        var pathToRun = "/path/to/run";
+        var command = "command --to --run";
+        var shellResult = { code: 0 };
+        mockito.when(mockedShell).exec(command).thenReturn(shellResult);
+        var status = shell.runCommandGiveStatus(pathToRun, command);
+        mockito.verify(mockedShell.cd)(pathToRun);
+        expect(status).to.be.true;
+    });
+
+    it('runCommandGiveStatus runs the given command and gives false when return code is 1', function() {
+        var pathToRun = "/path/to/run";
+        var command = "command --to --run";
+        var shellResult = { code: 1 };
+        mockito.when(mockedShell).exec(command).thenReturn(shellResult);
+        var status = shell.runCommandGiveStatus(pathToRun, command);
+        mockito.verify(mockedShell.cd)(pathToRun);
+        expect(status).to.be.false;
     });
 });

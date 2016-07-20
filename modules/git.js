@@ -40,5 +40,9 @@ module.exports = {
             if(error) callback(null, { error: true });
             else callback(null, { success: true });
         });
+    },
+
+    stash: function(repoPath) {
+        return shell.runCommandGiveStatus(repoPath, config.git.stashCmd);
     }
 };
