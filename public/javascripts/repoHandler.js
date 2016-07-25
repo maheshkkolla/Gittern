@@ -2,10 +2,8 @@ $(function() {
     $('.reposList .repo').click(function(event) {
         var self = $(event.target);
         changeSelectedRepo(self);
-        $('ul.tabs li a.tab_link')[0].click();
+        $('ul.tabs li a.tab_link')[1].click();
     });
-
-
 });
 
 var getSelectedRepoPath = function() {

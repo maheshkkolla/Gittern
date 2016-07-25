@@ -1,32 +1,36 @@
 var git = require('../modules/git');
 var config = require('../config');
 module.exports = {
-    getAll: function(path, callback) {
-        var projects = git.getAllRepositories(path);
+    getAll: function(mainPath, callback) {
+        var projects = git.getAllRepositories(mainPath);
         callback(null, projects);
     },
 
-    getStatus: function(path, callback) {
-        var status = git.getRepoStatus(path);
-        var stats = git.getBehindAndAhead(path);
+    getStatus: function(repoPath, callback) {
+        var status = git.getRepoStatus(repoPath);
+        var stats = git.getBehindAndAhead(repoPath);
         callback(null, status, stats);
     },
 
-    getLogs: function(path, offset, callback) {
-        var commitCount = git.getCommitCount(path);
+    getLogs: function(repoPath, offset, callback) {
+        var commitCount = git.getCommitCount(repoPath);
         if(commitCount < offset) offset = 0;
-        var logs = git.getRepoLogs(path, offset, 30);
-        var url = git.getGitHubUrl(path);
+        var logs = git.getRepoLogs(repoPath, offset, 30);
+        var url = git.getGitHubUrl(repoPath);
         callback(null, logs, commitCount, url);
     },
 
-    pullRebase: function(path, callback) {
-        git.pullRebase(path, callback);
+    pullRebase: function(repoPath, callback) {
+        if(git.pullRebase(repoPath)) {
+            callback(null, { message: config.success.gitPull });
+        } else {
+            callback({ message: config.errors.gitPull }, null);
+        }
     },
 
-    stashAndPull: function(path, callback) {
-        if(git.stash(path)) {
-            this.pullRebase(path, callback);
+    stashAndPull: function(repoPath, callback) {
+        if(git.stash(repoPath)) {
+            this.pullRebase(repoPath, callback);
         } else {
             callback({ message: config.errors.gitStash }, null);
         }

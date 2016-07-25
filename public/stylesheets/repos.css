@@ -29,3 +29,18 @@
     background-color: #444444;
     color: #ffffff;
 }
+
+.pullAllReposList {
+    font-size: 18px;
+    margin: 20px;
+}
+
+.pullAllReposList .pullAllRepo {
+    padding: 5px;
+}
+
+.pullAllRepo .status {
+    padding: 50px;
+    font-family: serif;
+    color: #daa520;
+}

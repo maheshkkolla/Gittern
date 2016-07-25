@@ -35,11 +35,7 @@ module.exports = {
     },
 
     pullRebase: function(repoPath, callback) {
-        var repo = git(repoPath);
-        repo.pull('', '', ['--rebase'], function(error) {
-            if(error) callback({ message: config.errors.gitPull }, null);
-            else callback(null, { message: config.success.gitPull });
-        });
+        return shell.runCommandGiveStatus(repoPath, config.git.pullRebaseCmd);
     },
 
     stash: function(repoPath) {

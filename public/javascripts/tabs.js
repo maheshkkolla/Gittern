@@ -4,8 +4,14 @@ $(function() {
         var tabContentId = "#" + selfElement.attr('data-content');
         var url = selfElement.attr('data-url');
         var projectPath = getSelectedRepoPath();
-        callAndRefreshTab(tabContentId, url, {path: projectPath});
+        if(selfElement.attr('data-no-ajax')) {
+            refreshTabWithOutAjax(tabContentId);
+        } else {
+            callAndRefreshTab(tabContentId, url, {path: projectPath});
+        }
     });
+
+    $('ul.tabs li a.tab_link')[0].click();
 });
 
 var callAndRefreshTab = function(tabContentId, url, queryParams, done) {
@@ -26,6 +32,11 @@ var getTabContent = function(url, queryParams) {
 var closeAllTabs = function(tabContentId) {
     $(tabContentId).siblings('.tab_content')
         .css('display', 'none');
+};
+
+var refreshTabWithOutAjax = function(tabContentId) {
+    closeAllTabs(tabContentId);
+    $(tabContentId).css('display', 'block');
 };
 
 var refreshTab = function(tabContentId, content) {

@@ -64,6 +64,14 @@ a {
   border-bottom-color: #d3d3d3;
   cursor: pointer;
   padding: 10px;
-  color: #666666;
+  color: #555555;
   margin: 5px;
+}
+
+.green {
+  color: #008000;
+}
+
+.red {
+  color: #ff0000;
 }

@@ -1,6 +1,7 @@
 var proxyquire  =  require('proxyquire');
 var mockito = require('jsmockito').JsMockito;
 //var expect = require('chai').expect;
+var path = require('path');
 var mockedGit = null;
 var repos = null;
 
@@ -44,16 +45,18 @@ describe('Repos service' ,function() {
     it("pullRebase pulls the given repository", function() {
         var repoPath = "/dummy/path";
         var callback = mockito.mockFunction();
+        mockito.when(mockedGit).pullRebase(repoPath).thenReturn(true);
         repos.pullRebase(repoPath, callback);
-        mockito.verify(mockedGit.pullRebase)(repoPath, callback);
+        mockito.verify(callback)(null);
     });
 
     it("stashAndPull first stashs the changes in repo and then pulls the repo", function() {
         var repoPath = "/dummy/path";
         var callback = mockito.mockFunction();
         mockito.when(mockedGit).stash(repoPath).thenReturn(true);
+        mockito.when(mockedGit).pullRebase(repoPath).thenReturn(true);
         repos.stashAndPull(repoPath, callback);
-        mockito.verify(mockedGit.pullRebase)(repoPath, callback);
+        mockito.verify(callback)(null);
     });
 
     it("stashAndPull will not pull if error at stashing", function() {

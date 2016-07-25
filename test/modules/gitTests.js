@@ -1,6 +1,5 @@
 var config = require('../../config');
 var proxyquire = require('proxyquire');
-var JsHM = require('jshamcrest').JsHamcrest.Matchers;
 var mockito = require('jsmockito').JsMockito;
 var expect = require('chai').expect;
 var mockedShell = mockito.mock(require('../../modules/shell'));
@@ -76,14 +75,10 @@ describe('git' ,function() {
 
     it("pullRebase pull the repository with rebase flag on", function() {
         var repoPath = "/dummy/repo/path/here";
-        var callbackForPull = mockito.mockFunction();
-        var gitS = mockito.mock({ pull: function(){} });
-        mockito.when(mockedGitC)(repoPath).thenReturn(gitS);
-        mockito.when(gitS).pull().then(function() {
-            arguments[3](null);
-        });
-        git.pullRebase(repoPath, callbackForPull);
-        mockito.verify(callbackForPull)(null);
+        var command = config.git.pullRebaseCmd;
+        mockito.when(mockedShell).runCommandGiveStatus(repoPath, command).thenReturn(true);
+        expect(git.pullRebase(repoPath)).to.be.true;
+
     });
 
     it("stash stashes the given repository", function() {
