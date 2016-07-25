@@ -4,7 +4,7 @@ $(function() {
         var tabContentId = "#" + selfElement.attr('data-content');
         var url = selfElement.attr('data-url');
         var projectPath = getSelectedRepoPath();
-        if(selfElement.attr('data-no-ajax')) {
+        if(selfElement.attr('data-no-ajax') || !projectPath) {
             refreshTabWithOutAjax(tabContentId);
         } else {
             callAndRefreshTab(tabContentId, url, {path: projectPath});
@@ -15,6 +15,7 @@ $(function() {
 });
 
 var callAndRefreshTab = function(tabContentId, url, queryParams, done) {
+    $(tabContentId).html("Loading...");
     getTabContent(url, queryParams).done(function(content) {
         refreshTab(tabContentId, content);
         if(done) done();
