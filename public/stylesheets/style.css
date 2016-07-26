@@ -69,9 +69,9 @@ a {
 }
 
 .green {
-  color: #008000;
+  color: #008000 !important;
 }
 
 .red {
-  color: #ff0000;
+  color: #ff0000 !important;
 }

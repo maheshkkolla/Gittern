@@ -31,8 +31,9 @@
 }
 
 .pullAllReposList {
-    font-size: 18px;
+    font-size: 20px;
     margin: 20px;
+    font-family: serif;
 }
 
 .pullAllReposList .pullAllRepo {
@@ -40,7 +41,8 @@
 }
 
 .pullAllRepo .status {
-    padding: 50px;
-    font-family: serif;
+    padding-left: 50px;
+    font-family: sans-serif;
     color: #daa520;
+    font-size: 16px;
 }
